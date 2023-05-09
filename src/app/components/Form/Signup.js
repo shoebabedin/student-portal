@@ -75,6 +75,21 @@ const Signup = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <label className="font-semibold text-xs mt-3" for="passwordField">Role</label>
+        <select
+          className="w-full text-black pl-1 py-2 rounded-md"
+          onChange={(e) => setGender(e.target.value)}
+        >
+          <option className="text-black" value="male" selected>
+            Select your gender
+          </option>
+          <option className="text-black" value="male">
+            Male
+          </option>
+          <option className="text-black" value="female">
+            Female
+          </option>
+        </select>
         <button
           disabled={loading}
           type="submit"

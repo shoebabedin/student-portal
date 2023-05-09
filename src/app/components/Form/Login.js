@@ -19,7 +19,7 @@ const Login = () => {
       setLoading(true);
       await auth.login(email, password);
       setNotification("success");
-      router.push("/home");
+      // router.push("/home");
     } catch (error) {
       console.log(error);
       setError("Login to failed");
