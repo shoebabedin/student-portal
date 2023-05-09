@@ -2,6 +2,8 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const auth = useAuth();
@@ -19,9 +21,15 @@ const Login = () => {
       setLoading(true);
       await auth.login(email, password);
       setNotification("success");
-      // router.push("/home");
+      router.push("/home");
+      toast("Welcome")
     } catch (error) {
       console.log(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode.split('/')[1]);
+      console.log(errorMessage);
+      toast(errorCode.split('/')[1])
       setError("Login to failed");
       setLoading(false);
     }

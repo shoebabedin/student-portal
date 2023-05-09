@@ -35,7 +35,7 @@ const Branch = () => {
       <div className="container my-2">
         <div className="grid grid-flow-row grid-cols-12 gap-4">
           <div className="col-span-12">
-            <h2 className="font-bold text-xl mb-2">Students</h2>
+            <h2 className="font-bold text-xl mb-2">Branch</h2>
             <form
               action=""
               className="grid grid-cols-12 grid-flow-row gap-3"

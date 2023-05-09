@@ -4,6 +4,8 @@ import { db } from "@/firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const auth = useAuth();
@@ -11,6 +13,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [loading, setLoading] = useState();
   const [notification, setNotification] = useState("");
   const usersCollectionRef = collection(db, "users");
@@ -20,16 +23,22 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await auth.signup(email, password, username);
+      await auth.signup(email, password, username, role);
       await addDoc(usersCollectionRef, {
         email: email,
         password: password,
-        username: username
+        username: username,
+        role: role
       });
       setNotification("success");
+      toast("Success-fully create your account")
       router.push("/");
     } catch (error) {
-      console.log(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode.split('/')[1]);
+      console.log(errorMessage);
+      toast(errorCode.split('/')[1])
       setLoading(false);
     }
   }
@@ -77,17 +86,17 @@ const Signup = () => {
         />
         <label className="font-semibold text-xs mt-3" for="passwordField">Role</label>
         <select
-          className="w-full text-black pl-1 py-2 rounded-md"
-          onChange={(e) => setGender(e.target.value)}
+          className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
+          onChange={(e) => setRole(e.target.value)}
         >
           <option className="text-black" value="male" selected>
-            Select your gender
+            Select your role
           </option>
           <option className="text-black" value="male">
-            Male
+            Teacher
           </option>
           <option className="text-black" value="female">
-            Female
+            Student
           </option>
         </select>
         <button

@@ -81,12 +81,12 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="flex items-center justify-between gap-x-3">
-                  <span className="border py-1 px-2 rounded-md shadow-md flex items-center justify-between  text-black">
+                  <Link href="/profile" className="border py-1 px-2 rounded-md shadow-md flex items-center justify-between  text-black">
                     <CgUser />
                     <span className="text-black">
                       {auth.currentUser.displayName}
                     </span>
-                  </span>
+                  </Link>
                   <button
                     className="border py-2 px-2 rounded-md shadow-md  text-black hidden md:block"
                     onClick={handleLogout}
@@ -145,10 +145,15 @@ const Navbar = () => {
                           </Link>
                         </li>
                         <li>
-                          <button
-                            className="text-white"
-                            onClick={handleLogout}
+                          <Link
+                            href="/attendance"
+                            className="text-black font-medium text-base"
                           >
+                            Attendance
+                          </Link>
+                        </li>
+                        <li>
+                          <button className="text-white" onClick={handleLogout}>
                             LogOut
                           </button>
                         </li>
