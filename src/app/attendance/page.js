@@ -41,10 +41,6 @@ const Attendance = () => {
       } catch (error) {
         console.log(error);
       }
-      
-
-
-   
   };
 
   useEffect(() => {
